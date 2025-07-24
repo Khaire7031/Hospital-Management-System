@@ -12,5 +12,4 @@ public class GateWayHmsApplication {
 		System.out.println("	 GateWayHmsApplication");
 		System.out.println("-------------------------------------");
 	}
-
 }
