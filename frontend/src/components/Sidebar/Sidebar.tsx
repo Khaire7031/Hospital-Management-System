@@ -9,6 +9,7 @@ import {
     IconBuildingStore
 } from '@tabler/icons-react'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 const links = [
@@ -21,6 +22,7 @@ const links = [
     { name: 'Settings', url: "/settings", icon: <IconSettings size={20} stroke={1.5} /> }
 ]
 export default function Sidebar() {
+    const user = useSelector((state: any) => state.user);
     return (
         <div>
             <div className='w-64 flex'>
@@ -38,8 +40,8 @@ export default function Sidebar() {
                         <div className='p-1 bg-white rounded-full shadow-xl'>
                             <Avatar variant='filled' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHORVLY3-9bljdur2Lmf-bFufXufDUrwF92g&s" size="xl" alt="it's me" />
                         </div>
-                        <span className='text-lg text-white'>Pranav</span>
-                        <Text c="dimmed" fs="initial" className='text-light'>Admin</Text>
+                        <span className='text-lg text-white'>{user.name}</span>
+                        <Text c="dimmed" fs="initial" className='text-light'>{user.role}</Text>
                     </div>
                     <div className='flex flex-col gap-1'>
                         {

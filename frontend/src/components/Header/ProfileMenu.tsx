@@ -1,12 +1,14 @@
 import { Menu, Text, Avatar } from '@mantine/core';
 import { IconSettings, IconSearch, IconPhoto, IconMessageCircle, IconTrash, IconArrowsLeftRight } from '@tabler/icons-react';
+import { useSelector } from 'react-redux';
 
 export default function ProfileMenu() {
+    const user = useSelector((state: any) => state.user);
     return (
         <Menu shadow="md" width={200}>
             <Menu.Target>
                 <div className='flex items-center gap-2 cursor-pointer'>
-                    <span className='font-medium text-lg text-neutral-900'>Pranav</span>
+                    <span className='font-medium text-lg text-neutral-900'>{user.name}</span>
                     <Avatar variant='filled' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHORVLY3-9bljdur2Lmf-bFufXufDUrwF92g&s" size={40} alt="it's me" />
                 </div>
             </Menu.Target>

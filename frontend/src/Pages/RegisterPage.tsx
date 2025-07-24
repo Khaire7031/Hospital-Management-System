@@ -14,7 +14,7 @@ export default function RegisterPage() {
         mode: 'controlled',
         initialValues: {
             name: '',
-            type: "PATIENT",
+            role: "PATIENT",
             email: '',
             password: '',
             confirmpassword: '',

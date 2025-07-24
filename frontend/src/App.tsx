@@ -4,6 +4,8 @@ import './App.css';
 import { createTheme, MantineProvider } from '@mantine/core';
 import AppRoutes from './Routes/AppRoutes';
 import { Notifications } from '@mantine/notifications';
+import { Provider } from 'react-redux';
+import Store from './Store';
 
 const theme = createTheme({
   fontFamily: 'Poppins, sans-serif',
@@ -25,12 +27,14 @@ const theme = createTheme({
 })
 function App() {
   return (
-    <MantineProvider theme={theme}>
-      <Notifications 
-        position='top-right'
-      />
-      <AppRoutes />
-    </MantineProvider>
+    <Provider store={Store}>
+      <MantineProvider theme={theme}>
+        <Notifications
+          position='top-right'
+        />
+        <AppRoutes />
+      </MantineProvider>
+    </Provider>
   );
 }
 

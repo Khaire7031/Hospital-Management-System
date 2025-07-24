@@ -5,8 +5,13 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { loginUser } from '../Service/UserService';
 import { errorNotification, successNotification } from '../utility/Notification';
+import { useDispatch } from 'react-redux';
+import { setJwt } from '../Slices/JwtSlice';
+import { jwtDecode } from 'jwt-decode';
+import { setUser } from '../Slices/UserSlice';
 
 export default function LoginPage() {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [loading, setLoading] = React.useState(false);
     const form = useForm({
@@ -25,7 +30,11 @@ export default function LoginPage() {
     const handleSubmit = (values: typeof form.values) => {
         setLoading(true);
         loginUser(values).then((response) => {
-            successNotification('Login successful');
+            console.log(jwtDecode(response));
+            // successNotification('Login successful');
+            console.log("Data Login page ", response);
+            dispatch(setJwt(response));
+            dispatch(setUser(jwtDecode(response)));
             navigate('/dashboard');
         }).catch((error) => {
             errorNotification(error?.errorMessage || 'Login failed');

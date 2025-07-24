@@ -3,14 +3,16 @@ import Ramdom from '../Ramdom';
 import AdminDashBoard from '../Layout/AdminDashBoard';
 import LoginPage from '../Pages/LoginPage';
 import RegisterPage from '../Pages/RegisterPage';
+import PublicRoutes from './PublicRoutes';
+import ProtectedRoutes from './ProtectedRoutes';
 
 export default function AppRoutes() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/login' element={<LoginPage />} />
-                <Route path='/register' element={<RegisterPage />} />
-                <Route path='/' element={<AdminDashBoard></AdminDashBoard>}>
+                <Route path='/login' element={<PublicRoutes><LoginPage /></PublicRoutes>} />
+                <Route path='/register' element={<PublicRoutes><RegisterPage /></PublicRoutes>} />
+                <Route path='/' element={<ProtectedRoutes><AdminDashBoard /></ProtectedRoutes>}>
                     <Route path="**" element={<Ramdom />} />
                     <Route path="/dashboard" element={<Ramdom />} />
                     <Route path="/doctors" element={<Ramdom />} />
