@@ -20,6 +20,8 @@ public class PatientDto {
     private String address;
     private String aadharNumber;
     private BloodGroup bloodGroup;
+    private String allergies;
+    private String chronicDisease;
 
     public Patient toEntity() {
         Patient patient = new Patient();
@@ -31,6 +33,8 @@ public class PatientDto {
         patient.setAddress(this.address);
         patient.setAadharNumber(this.aadharNumber);
         patient.setBloodGroup(this.bloodGroup);
+        patient.setAllergies(this.allergies);
+        patient.setChronicDisease(this.chronicDisease);
         return patient;
     }
 }

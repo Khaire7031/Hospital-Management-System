@@ -31,9 +31,12 @@ public class Patient {
     private String phone;
     private String address;
 
-    @Column(unique = true, nullable = false)
+    // @Column(unique = true, nullable = false)
     private String aadharNumber;
     private BloodGroup bloodGroup;
+
+    private String allergies;
+    private String chronicDisease;
 
     public PatientDto toDto() {
         return new PatientDto(
@@ -44,6 +47,8 @@ public class Patient {
                 this.phone,
                 this.address,
                 this.aadharNumber,
-                this.bloodGroup);
+                this.bloodGroup,
+                this.allergies,
+                this.chronicDisease);
     }
 }

@@ -21,10 +21,10 @@ public class PatientServiceImpl implements PatientService {
         Optional<Patient> existingByEmail = patientRepository.findByEmail(patientDto.getEmail());
         Optional<Patient> existingByAadhar = patientRepository.findByAadharNumber(patientDto.getAadharNumber());
 
-        if (existingByEmail.isPresent()) {
+        if (patientDto.getEmail() != null && existingByEmail.isPresent()) {
             throw new UserException("Patient with email " + patientDto.getEmail() + " already exists.");
         }
-        if (existingByAadhar.isPresent()) {
+        if (patientDto.getAadharNumber() != null && existingByAadhar.isPresent()) {
             throw new UserException("Patient with Aadhar number " + patientDto.getAadharNumber() + " already exists.");
         }
 

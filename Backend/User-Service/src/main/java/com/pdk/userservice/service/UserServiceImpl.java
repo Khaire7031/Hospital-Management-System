@@ -11,7 +11,10 @@ import com.pdk.userservice.entity.User;
 import com.pdk.userservice.exception.UserException;
 import com.pdk.userservice.repository.UserRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -20,6 +23,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private ApiService apiService;
+
     @Override
     public void registerUser(UserDTO userDTO) throws UserException {
         Optional<User> user = userRepository.findByEmail(userDTO.getEmail());
@@ -27,6 +33,8 @@ public class UserServiceImpl implements UserService {
             throw new UserException("User already exists with this email");
         }
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        Long profileId = apiService.addProfile(userDTO).block();
+        userDTO.setProfileId(profileId);
         userRepository.save(userDTO.toUser());
     }
 

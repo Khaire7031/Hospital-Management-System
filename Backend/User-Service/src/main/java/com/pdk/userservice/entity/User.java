@@ -27,7 +27,9 @@ public class User {
     private String password;
     private Roles role;
 
+    private Long profileId;
+
     public UserDTO toUserDTO() {
-        return new UserDTO(this.id, this.name, this.email, this.password, this.role);
+        return new UserDTO(this.id, this.name, this.email, this.password, this.role, this.profileId);
     }
 }
