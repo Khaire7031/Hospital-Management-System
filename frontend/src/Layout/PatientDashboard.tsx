@@ -8,8 +8,10 @@ export default function PatientDashboard() {
         <div>
             <div>
                 <div className='flex'>
-                    <Sidebar />
-                    <div className='w-full flex flex-col'>
+                    <div className="w-64 h-full fixed">
+                        <Sidebar />
+                    </div>
+                    <div className='w-full ml-64 flex flex-col'>
                         <Header />
                         <Outlet />
                     </div>
