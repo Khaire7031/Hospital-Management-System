@@ -30,7 +30,7 @@ public class Doctor {
     private String phone;
     private String address;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String licenseNo;
 
     private String specialization;

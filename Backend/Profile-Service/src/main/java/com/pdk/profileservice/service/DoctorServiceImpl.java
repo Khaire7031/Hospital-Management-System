@@ -21,11 +21,12 @@ public class DoctorServiceImpl implements DoctorService {
     public Long addDoctor(DoctorDto doctorDto) throws UserException {
         Optional<Doctor> existingDoctorByEmail = doctorRepository.findByEmail(doctorDto.getEmail());
         Optional<Doctor> existingDoctorByLicenseNo = doctorRepository.findByLicenseNo(doctorDto.getLicenseNo());
-
-        if (existingDoctorByEmail.isPresent()) {
+        System.out.println("-------------------------------------");
+        System.out.println("Doctor : " + doctorDto.toString());
+        System.out.println("-------------------------------------");
+        if (doctorDto.getEmail() != null && existingDoctorByEmail.isPresent()) {
             throw new UserException("Doctor with email " + doctorDto.getEmail() + " already exists.");
-        }
-        if (existingDoctorByLicenseNo.isPresent()) {
+        } else if (doctorDto.getLicenseNo() != null && existingDoctorByLicenseNo.isPresent()) {
             throw new UserException("Doctor with license number " + doctorDto.getLicenseNo() + " already exists.");
         }
 

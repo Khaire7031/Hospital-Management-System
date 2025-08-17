@@ -37,7 +37,11 @@ export default function RegisterPage() {
 
     const handleSubmit = (values: typeof form.values) => {
         setLoading(true);
-        registerUser(values).then((response) => {
+        const transformedValues = {
+            ...values,
+            role: values.role.toUpperCase(), // Convert role to uppercase
+        };
+        registerUser(transformedValues).then((response) => {
             successNotification('User registered successfully');
             navigate('/login');
         }).catch((error) => {
@@ -57,13 +61,13 @@ export default function RegisterPage() {
                     <div className='self-center font-medium font-heading text-dark text-xl'>Register</div>
                     <SegmentedControl
                         color="cyan"
-                        {...form.getInputProps("type")}
+                        {...form.getInputProps("role")}
                         size="md"
                         radius="md"
                         data={[
-                            { value: 'Patient', label: 'PATIENT' },
-                            { value: 'Docter', label: 'DOCTER' },
-                            { value: 'Admin', label: 'ADMIN' },
+                            { value: 'PATIENT', label: 'PATIENT' },
+                            { value: 'DOCTOR', label: 'DOCTOR' },
+                            { value: 'ADMIN', label: 'ADMIN' },
                         ]}
                     />
                     <TextInput

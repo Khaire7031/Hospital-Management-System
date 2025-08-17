@@ -30,12 +30,10 @@ export default function LoginPage() {
     const handleSubmit = (values: typeof form.values) => {
         setLoading(true);
         loginUser(values).then((response) => {
-            console.log(jwtDecode(response));
-            // successNotification('Login successful');
-            console.log("Data Login page ", response);
+            successNotification('Login successful');
+            navigate(`/dashboard`);
             dispatch(setJwt(response));
             dispatch(setUser(jwtDecode(response)));
-            navigate('/dashboard');
         }).catch((error) => {
             errorNotification(error?.errorMessage || 'Login failed');
         }).finally(() => {
