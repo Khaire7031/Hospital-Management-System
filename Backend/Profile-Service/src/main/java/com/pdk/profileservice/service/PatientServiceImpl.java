@@ -41,4 +41,13 @@ public class PatientServiceImpl implements PatientService {
                 .toDto();
     }
 
+    @Override
+    public PatientDto updatePatient(PatientDto patientDto) throws UserException {
+        if (patientRepository.findById(patientDto.getId()).isPresent()) {
+            throw new UserException("Patient with ID " + patientDto.getId() + " already exists.");
+        }
+
+        throw new UnsupportedOperationException("Unimplemented method 'updatePatient'");
+    }
+
 }

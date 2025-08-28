@@ -27,9 +27,6 @@ public class DoctorApi {
 
     @PostMapping("/add")
     public ResponseEntity<Long> addDoctor(@RequestBody DoctorDto doctorDto) throws UserException {
-        System.out.println("-------------------------------------");
-        System.out.println("Doctor : " + doctorDto.toString());
-        System.out.println("-------------------------------------");
         return new ResponseEntity<>(doctorService.addDoctor(doctorDto), HttpStatus.CREATED);
     }
 

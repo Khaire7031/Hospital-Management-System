@@ -13,6 +13,7 @@ import com.pdk.profileservice.dto.PatientDto;
 import com.pdk.profileservice.exception.UserException;
 import com.pdk.profileservice.service.PatientService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -33,5 +34,10 @@ public class PatientApi {
     @GetMapping("/get/{id}")
     public ResponseEntity<PatientDto> getPatientById(@PathVariable Long id) throws UserException {
         return new ResponseEntity<>(patientService.getPatientById(id), HttpStatus.OK);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<PatientDto> updatePatient(@RequestBody PatientDto patientDto) throws UserException {
+        return new ResponseEntity<>(patientService.updatePatient(patientDto), HttpStatus.OK);
     }
 }

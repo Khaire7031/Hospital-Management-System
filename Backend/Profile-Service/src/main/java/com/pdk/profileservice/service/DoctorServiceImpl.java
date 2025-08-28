@@ -21,9 +21,6 @@ public class DoctorServiceImpl implements DoctorService {
     public Long addDoctor(DoctorDto doctorDto) throws UserException {
         Optional<Doctor> existingDoctorByEmail = doctorRepository.findByEmail(doctorDto.getEmail());
         Optional<Doctor> existingDoctorByLicenseNo = doctorRepository.findByLicenseNo(doctorDto.getLicenseNo());
-        System.out.println("-------------------------------------");
-        System.out.println("Doctor : " + doctorDto.toString());
-        System.out.println("-------------------------------------");
         if (doctorDto.getEmail() != null && existingDoctorByEmail.isPresent()) {
             throw new UserException("Doctor with email " + doctorDto.getEmail() + " already exists.");
         } else if (doctorDto.getLicenseNo() != null && existingDoctorByLicenseNo.isPresent()) {
@@ -37,9 +34,10 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public DoctorDto getDoctorById(Long id) throws UserException {
+        System.out.println("Fetching doctor with ID: " + id);
         return doctorRepository
                 .findById(id)
-                .orElseThrow(() -> new UserException("Doctor with ID " + id + " not found."))
+                .orElseThrow(() -> new UserException("Doctor with Id " + id + " not found."))
                 .toDto();
     }
 

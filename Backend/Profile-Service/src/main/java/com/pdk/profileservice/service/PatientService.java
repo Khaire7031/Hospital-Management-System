@@ -8,4 +8,6 @@ public interface PatientService {
 
     public PatientDto getPatientById(Long id) throws UserException;
 
+    public PatientDto updatePatient(PatientDto patientDto) throws UserException;
+
 }
